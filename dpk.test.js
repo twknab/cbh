@@ -31,7 +31,7 @@ describe("DeterministicPartitionKey", () => {
   });
 
   it("Returns a newly generated hash key if the event partition key exceeds the maximum length", () => {
-    const longString = "A".repeat(257);
+    const longString = "A".repeat(dpk.MAX_PARTITION_KEY_LENGTH + 1);
     const dpk = new DeterministicPartitionKey({
       partitionKey: longString,
     });
