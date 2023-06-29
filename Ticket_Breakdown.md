@@ -219,7 +219,7 @@ We need to add the new `custom_id` value to existing reporting metadata. We need
 
 ***
 
-## Ticket #5: Update `generateReport()` to display `Agent.custom_id` in PDF output rather than `Agent.id`
+## 5️⃣ Ticket #5: Update `generateReport()` to display `Agent.custom_id` in PDF output rather than `Agent.id`
 
 ### ✏️ Details
 
