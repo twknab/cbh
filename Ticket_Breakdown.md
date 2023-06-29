@@ -10,7 +10,7 @@ We are a staffing company whose primary purpose is to book Agents at Shifts post
 **Currently, the id of each Agent on the reports we generate is their internal database id. We'd like to add the ability for Facilities to save their own custom ids for each Agent they work with and use that id when generating reports for them.**
 
 
-Based on the information given, break this ticket down into 2-5 individual tickets to perform. Provide as much detail for each ticket as you can, including acceptance criteria, time/effort estimates, and implementation details. Feel free to make informed guesses about any unknown details - you can't guess "wrong".
+Based on the information given, break this ticket down into 2-5 individual tickets to perform. Provide as much detail for each ticket as you can, including Acceptance Criteria, time/effort estimates, and implementation details. Feel free to make informed guesses about any unknown details - you can't guess "wrong".
 
 
 You will be graded on the level of detail in each ticket, the clarity of the execution plan within and between tickets, and the intelligibility of your language. You don't need to be a native English speaker, but please proof-read your work.
@@ -19,9 +19,9 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 // BEGIN BREAKDOWN BY TK:
 
-## Ticket #1: Create new Schema and table called `CustomIDs`
+## 1️⃣ Ticket #1: Create new Schema and table called `CustomIDs`
 
-### ✏️ DETAILS
+### ✏️ Details
 
 To allow Facilities to add their own `custom_id` to `Agents`, and query reports from this `custom_id`,  we need to create a new table called `CustomIDs`. 
 
@@ -30,7 +30,7 @@ To allow Facilities to add their own `custom_id` to `Agents`, and query reports 
 
 Note: When the code is approved we can ship and run migrations, creating the new table in the database.
 
-### 🔍 ACCEPTANCE CRITERIA
+### 🔍 Acceptance Criteria
 
 - Create new schema model with appropriiate fields
 - New model includes a test, testing validations
@@ -39,11 +39,11 @@ Note: When the code is approved we can ship and run migrations, creating the new
 - Validation: all fields are required
 - Create / Update any relevant documentation
 
-### 📈 POINT ESTIMATE (FIBONACCI SCALE)
+### 📈 Point Estimate (Fibnonacci Scale)
 
 - ***5 pts (L)***
 
-### 💻 IMPLEMENTATION DETAILS
+### 💻 Implementation Details
 
 See the fields and name below to define the new Schema:
 
@@ -67,22 +67,22 @@ See the fields and name below to define the new Schema:
 
 - Index `facility_id`, `custom_id` and `agent_id` as we'll use these frequently in queries
 
-### 🔗 BLOCKING (LINKED TASKS)
+### 🔗 Blocking (Linked Tasks)
 
 - Task #2
 - Task #3
 - Task #4
 - Task #5
 
-### 🔗 BLOCKED BY (LINKED TASKS)
+### 🔗 Blocked By (Linked Tasks)
 
 - None
 
 ***
 
-## Ticket #2: Add API Endpoint to create a new `CustomIDs` record
+## 2️⃣ Ticket #2: Add API Endpoint to create a new `CustomIDs` record
 
-### ✏️ DETAILS
+### ✏️ Details
 
 Create a new end point and correspoding controller logic that creates a new `CustomIDs` record.
 
@@ -92,7 +92,7 @@ Route: `/agent/:agent-id/update/custom-id`
 - If a `CustomID` record already exists, update the `custom_id` value. 
 - If the `custom_id` value is taken by another `Agent` at that `Facility`, return an error.
 
-### 🔍 ACCEPTANCE CRITERIA
+### 🔍 Acceptance Criteria
 
 - New API end point (POST) is created `/agent/:agent-id/update/custom-id`
 - New controller method creates new `CustomID` record in `CustomIDs`
@@ -103,11 +103,11 @@ Route: `/agent/:agent-id/update/custom-id`
 - Include a test for the new controller logic, ensuring correct behavior
 - Create / Update any relevant documentation
 
-### 📈 POINT ESTIMATE (FIBONACCI SCALE)
+### 📈 Point Estimate (Fibon Scale)
 
 - ***5 pts (L)***
 
-### 💻 IMPLEMENTATION DETAILS
+### 💻 Implementation Details
 
 - Right now there's no API route or end point to create the new record. 
 - Create a new API endpoint: `/agent/:agent-id/update/custom-id`
@@ -121,28 +121,28 @@ Route: `/agent/:agent-id/update/custom-id`
     - If the `custom_id` provided is not unique for that Facility, return a `422` HTTP response with error: "Error: Custom ID is already in use."
   - Controller should have a test that ensures the above cases behave correctly
 
-### 🔗 BLOCKING (LINKED TASKS)
+### 🔗 Blocking (Linked Tasks)
 
 - Task #3
 - Task #4
 - Task #5
 
-### 🔗 BLOCKED BY (LINKED TASKS)
+### 🔗 Blocked By (Linked Tasks)
 
 - Task #1
 
 ***
 
-## Ticket #3: Add `custom_id` user input to `Agent` page
+## 3️⃣ Ticket #3: Add `custom_id` user input to `Agent` page
 
-### ✏️ DETAILS
+### ✏️ Details
 
 - Add a new user number input field to the existing `Agent` page, that accepts a `custom_id`. 
 - See the attached Figma design for how this field should look. 
   - The field should have a button to the right of it that upon user click, sends a `POST` request to `/agent/:agent-id/update/custom-id` with the provided value. 
 - If an error is returned, please display the error (see Figma design), otherwise display success (see details below)
 
-### 🔍 ACCEPTANCE CRITERIA
+### 🔍 Acceptance Criteria
 
 - New "Custom ID" field is added to the `Agent` page (`/agent/:agent-id/`) with submit button
 - Includes updated Front-end tests which adds a new test case for new field and error state
@@ -153,11 +153,11 @@ Route: `/agent/:agent-id/update/custom-id`
 - Debounce on submit (disable button) to prevent duplicate requests
 - Create / Update any relevant documentation
 
-### 📈 POINT ESTIMATE (FIBONACCI SCALE)
+### 📈 Point Estimate (Fibon Scale)
 
 - ***5 pts (L)***
 
-### 💻 IMPLEMENTATION DETAILS
+### 💻 Implementation Details
 
 - *See Figma Design* <insert-fake-link-here> for user input and error state
 - Add the new field to the existing `<Agent />` view component (`Agent.jsx`)
@@ -166,21 +166,21 @@ Route: `/agent/:agent-id/update/custom-id`
 - Show error toast if 200 is not received: "Error: {$error_message}!"
 - Show success toast if 200 is received: "Success!"
 
-### 🔗 BLOCKING (LINKED TASKS)
+### 🔗 Blocking (Linked Tasks)
 
 - Task #4
 - Task #5
 
-### 🔗 BLOCKED BY (LINKED TASKS)
+### 🔗 Blocked By (Linked Tasks)
 
 - Task #1
 - Task #2
 
 ***
 
-## Ticket #4: Update `getShiftsByFacility()` to include `custom_id` in `Agent` metdata
+## 4️⃣ Ticket #4: Update `getShiftsByFacility()` to include `custom_id` in `Agent` metdata
 
-### ✏️ DETAILS
+### ✏️ Details
 
 We need to add the new `custom_id` value to existing reporting metadata. We need to update the following:
 
@@ -190,28 +190,28 @@ We need to add the new `custom_id` value to existing reporting metadata. We need
 
 - Update existing test case for this method, or expand test case logic
 
-### 🔍 ACCEPTANCE CRITERIA
+### 🔍 Acceptance Criteria
 
 - `getShiftsByFacility()` now includes `custom_id` property on `Agent` metadata
 - Test cases for `getShiftsByFacility()` have been updated
 - Create / Update any relevant documentation
 
-### 📈 POINT ESTIMATE (FIBONACCI SCALE)
+### 📈 Point Estimate (Fibon Scale)
 
 - ***2 pts (S)***
 
-### 💻 IMPLEMENTATION DETAILS
+### 💻 Implementation Details
 
 - Updates to `getShiftsByFacility()`:
   - Update this method to include `custom_id` in the `Agent` metadata
   - return `null` for those agents without `CustomIDs`
 - There are existing tests for this method but we'll have to update them or add new test cases to validate updated logic
 
-### 🔗 BLOCKING (LINKED TASKS)
+### 🔗 Blocking (Linked Tasks)
 
 - Task #5
 
-### 🔗 BLOCKED BY (LINKED TASKS)
+### 🔗 Blocked By (Linked Tasks)
 
 - Task #1
 - Task #2
@@ -221,7 +221,7 @@ We need to add the new `custom_id` value to existing reporting metadata. We need
 
 ## Ticket #5: Update `generateReport()` to display `Agent.custom_id` in PDF output rather than `Agent.id`
 
-### ✏️ DETAILS
+### ✏️ Details
 
 Currenty, `generateReport()` provides a PDF showing `Agent` shifts. The `id` displayed in the report is the `Agent.id`, Instead, we want to display `Agent.custom_id`, since this will be more relevant to the Facility. NOTE: We ***only display custom_id in place of id if all agents have a custom ID for that facility***. 
 
@@ -229,7 +229,7 @@ Currenty, `generateReport()` provides a PDF showing `Agent` shifts. The `id` dis
 - Only use `custom_id` if all the Agents have one (e.g, add a method that checks if all Agents for that facility's report have a custom_id, else default to `Agent.id`). This avoids us needing to do any backfilling for currrent report generation, and won't block the user if not all Agents have a custom_id set.
 - Update existing tests
 
-### 🔍 ACCEPTANCE CRITERIA
+### 🔍 Acceptance Criteria
 
 - `generateReport()` displays `custom_id` next to each Agent in PDF report ***only if all Agents have a custom_id set***
 - Test cases for `generateReport()` have been updated to reflect this
@@ -237,12 +237,12 @@ Currenty, `generateReport()` provides a PDF showing `Agent` shifts. The `id` dis
 - If *not all** custom_ids for agents have been set, PDF defaults to primary key `id`
 - Create / Update any relevant documentation
 
-### 📈 POINT ESTIMATE (FIBONACCI SCALE)
+### 📈 Point Estimate (Fibonacci Scale)
 
 - ***3 pts (M)***
 - The conditional logic on displaying the custom_ids, or defauling to regular ids adds to point value here
 
-### 💻 IMPLEMENTATION DETAILS
+### 💻 Implementation Details
 
 - Updates to `generateReport()`:
   - Create a method `getAllAgentsHaveCustomID()` that loops over `Agents` for that `Facility`, and returns `true` or `false` if all agents have a custom_id set
@@ -252,11 +252,11 @@ Currenty, `generateReport()` provides a PDF showing `Agent` shifts. The `id` dis
 - Update tests
 - End-to-end test PDF generation to confirm.
 
-### 🔗 BLOCKING (LINKED TASKS)
+### 🔗 Blocking (Linked Tasks)
 
 - None
 
-### 🔗 BLOCKED BY (LINKED TASKS)
+### 🔗 Blocked By (Linked Tasks)
 
 - Task #1
 - Task #2
