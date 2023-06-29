@@ -16,7 +16,7 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
   - Note: I opted to make the internal class methods and constants [private](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields) -- adding `#` prefix for JS class syntax. I also added a getter for our MAX character variable to use in tests.
 - Added `getCreateHash()` method to generate hash and keep code DRY. (Single purpose method to generate hash)
 - Added `getKeyFromEvent()` method to extract key from event if provided, or generate key from event data. (Single purpose method to generate key)
-- Added `calculate()` method which actually creates the key
+- Added `calculate()` method which actually executes the methods to create the key
 - Added `getValidateKey()` method to perform mutation validations - e.g, converting to string, re-generating hash if exceeds max length. (Single purpose method for validation)
 - Added test cases for the following scenarios:
   - Returns the literal '0' when given no event
