@@ -14,11 +14,10 @@ describe("DeterministicPartitionKey", () => {
   });
 
   it("Returns a generated key if provided with an event without a partition key", () => {
-    const dpk = new DeterministicPartitionKey({
+    const key = new DeterministicPartitionKey({
       foo: "bar",
       partitionKey: null,
-    });
-    const key = dpk.calculate();
+    }).calculate();
     expect(key).not.toBeNull();
   });
 
@@ -32,11 +31,10 @@ describe("DeterministicPartitionKey", () => {
 
   it("Returns a newly generated hash key if the event partition key exceeds the maximum length", () => {
     const longString = "A".repeat(dpk.MAX_PARTITION_KEY_LENGTH + 1);
-    const dpk = new DeterministicPartitionKey({
+    const key = new DeterministicPartitionKey({
       partitionKey: longString,
-    });
+    }).calculate();
     expect(longString.length).toBeGreaterThan(dpk.MAX_PARTITION_KEY_LENGTH);
-    const key = dpk.calculate();
     expect(key).not.toBe(longString);
     expect(key.length).toBeLessThan(dpk.MAX_PARTITION_KEY_LENGTH);
   });
